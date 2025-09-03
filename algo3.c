@@ -5,50 +5,50 @@ and binary insertion sort and output to a file. The no. of n can be hard coded i
 void linearInsertionSort(int a[], int n) {
     for (int i = 1; i < n; i++) {
         int key = a[i];
-        int j = i - 1;
+        int j = i-1;
         while (j >= 0 && a[j] > key) {
-            a[j+1] = a[j];
+            a[j+1]=a[j];
             j--;
         }
-        a[j + 1] = key;
+        a[j+1]=key;
     }
 }
 int binarySearch(int a[], int item, int low, int high) {
     while (low <= high) {
-        int mid = (low + high) / 2;
-        if (item == a[mid])
-            return mid + 1;
-        else if (item > a[mid])
-            low = mid + 1;
+        int mid =(low + high) / 2;
+        if (item ==a[mid])
+            return mid+1;
+        else if (item>a[mid])
+            low = mid+1;
         else
-            high = mid - 1;
+            high = mid-1;
     }
     return low;
 }
-void binaryInsertionSort(int a[], int n) {
-    for (int i = 1; i < n; i++) {
+void binaryInsertionSort(int a[],int n) {
+    for (int i=1;i<n;i++) {
         int key = a[i];
-        int j = i - 1;
+        int j = i-1;
         int loc = binarySearch(a, key, 0, j);
-        while (j >= loc) {
-            a[j + 1] = a[j];
+        while (j>=loc) {
+            a[j+1] = a[j];
             j--;
         }
-        a[j + 1] = key;
+        a[j+1] = key;
     }
 }
 void writeToFile(const char *filename, int a[], int n, const char *label) {
     FILE *fp = fopen(filename, "a");
-    if (fp == NULL) {
+    if (fp==NULL) {
         printf("Error: Unable to open file.\n");
         return;
     }
 
-    fprintf(fp, "%s:\n", label);
-    for (int i = 0; i < n; i++) {
-        fprintf(fp, "%d ", a[i]);
+    fprintf(fp,"%s:\n",label);
+    for (int i=0; i<n;i++) {
+        fprintf(fp,"%d ", a[i]);
     }
-    fprintf(fp, "\n\n");
+    fprintf(fp,"\n\n");
 
     fclose(fp);
 }
